@@ -1,13 +1,13 @@
-﻿using Shop.Data.Interfaces;
-using Shop.Data.Models;
+﻿using CarShop.Data.Interfaces;
+using CarShop.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Shop.Data.Mocks
+namespace CarShop.Data.Mocks
 {
-    public class MockCategory : ICarsCategory
+    public class MockCategory : ICarsCategories
     {
         public IEnumerable<Category> AllCategorites
         {

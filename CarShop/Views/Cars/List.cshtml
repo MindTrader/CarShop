@@ -1,26 +1,19 @@
-﻿@using Shop.Data.Models
-@model IEnumerable<Car>
-@{
-    Layout = null;
-}
+﻿@using System.Globalization;
+@model CarsListViewModel
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>List</title>
-</head>
-<body>
-    <h2>Все автомобили</h2>
-    @{ 
-        foreach(var car in Model)
+<h1>Все автомобили</h1>
+<h2>@Model.CurrCategory</h2>
+<div class="row mt-5 mb-2 ml-2">
+    @{
+        foreach (var car in Model.AllCars)
         {
-            <div>
-                <h2>Модель: @car.Name</h2>
-                <p>Цена: @car.Price.ToString("c")</p>
+            <div class="col-lg-4 carDiv">
+                <img class="img-thumbnail carImg" src="@car.Img" alt="@car.Name" />
+                <h3>@car.Name</h3>
+                <p>@car.ShortDesc</p>
+                <p>Цена: @car.Price.ToString("C", CultureInfo.GetCultureInfo("es-es"))</p>
+                <p><a class="btn btn-warning" href="#">Подробнее</a></p>
             </div>
         }
     }
-</body>
-</html>
+</div>

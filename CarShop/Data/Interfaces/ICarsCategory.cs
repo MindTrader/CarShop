@@ -1,12 +1,12 @@
-﻿using Shop.Data.Models;
+﻿using CarShop.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Shop.Data.Interfaces
+namespace CarShop.Data.Interfaces
 {
-    public interface ICarsCategory
+    public interface ICarsCategories
     {
         IEnumerable<Category> AllCategorites { get; }
     }
