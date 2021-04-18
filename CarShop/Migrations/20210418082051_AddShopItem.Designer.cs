@@ -4,14 +4,16 @@ using CarShop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CarShop.Migrations
 {
     [DbContext(typeof(AppDBContent))]
-    partial class AppDBContentModelSnapshot : ModelSnapshot
+    [Migration("20210418082051_AddShopItem")]
+    partial class AddShopItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,7 +65,7 @@ namespace CarShop.Migrations
                     b.ToTable("CategoryDb");
                 });
 
-            modelBuilder.Entity("CarShop.Data.Models.ShopCartItem", b =>
+            modelBuilder.Entity("CarShop.Data.Models.ShopCarItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -79,7 +81,7 @@ namespace CarShop.Migrations
 
                     b.HasIndex("CarItemId");
 
-                    b.ToTable("ShopCartItemDb");
+                    b.ToTable("ShopCarItemDb");
                 });
 
             modelBuilder.Entity("CarShop.Data.Models.Car", b =>
@@ -90,7 +92,7 @@ namespace CarShop.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("CarShop.Data.Models.ShopCartItem", b =>
+            modelBuilder.Entity("CarShop.Data.Models.ShopCarItem", b =>
                 {
                     b.HasOne("CarShop.Data.Models.Car", "CarItem")
                         .WithMany()

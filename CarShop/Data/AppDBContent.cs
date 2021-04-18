@@ -13,5 +13,7 @@ namespace CarShop.Data
 
         public DbSet<Car> CarDb { get; set; }
         public DbSet<Category> CategoryDb { get; set; }
+        public DbSet<ShopCartItem> ShopCartItemDb { get; set; }
+
     }
 }

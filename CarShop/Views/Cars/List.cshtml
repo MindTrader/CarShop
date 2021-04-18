@@ -1,19 +1,12 @@
-﻿@using System.Globalization;
-@model CarsListViewModel
+﻿@model CarsListViewModel
 
 <h1>Все автомобили</h1>
 <h2>@Model.CurrCategory</h2>
 <div class="row mt-5 mb-2 ml-2">
     @{
-        foreach (var car in Model.AllCars)
+        foreach (Car car in Model.AllCars)
         {
-            <div class="col-lg-4 carDiv">
-                <img class="img-thumbnail carImg" src="@car.Img" alt="@car.Name" />
-                <h3>@car.Name</h3>
-                <p>@car.ShortDesc</p>
-                <p>Цена: @car.Price.ToString("C", CultureInfo.GetCultureInfo("es-es"))</p>
-                <p><a class="btn btn-warning" href="#">Подробнее</a></p>
-            </div>
+            @Html.Partial("AllCars", car)
         }
     }
 </div>
