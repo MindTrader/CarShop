@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CarShop.Data.Models;
 
 namespace CarShop.Controllers
 {
@@ -18,13 +19,37 @@ namespace CarShop.Controllers
             _allCars = iAllCars;
             _allCategories = iCarsCat;
         }
-        public ViewResult List()
+
+        [Route("Cars/List")]
+        [Route("Cars/List/{category}")]
+        public ViewResult List(string category)
         {
+            IEnumerable<Car> cars = null;
+            string curCategory = "Все автомобили";
+
+            if (string.IsNullOrEmpty(category))
+            {
+                cars = _allCars.Cars.OrderBy(p => p.Id);
+            }
+            else if (string.Equals("electro", category, StringComparison.OrdinalIgnoreCase))
+            {
+                cars = _allCars.Cars.Where(p => p.Category.CategoryName.Equals("Электромобили")).OrderBy(p => p.Id);
+                curCategory = "Электромобили";
+            }
+            else if (string.Equals("fuel", category, StringComparison.OrdinalIgnoreCase))
+            {
+                cars = _allCars.Cars.Where(p => p.Category.CategoryName.Equals("Классические автомобили")).OrderBy(p => p.Id);
+                curCategory = "Классические автомобили";
+            }
+
             ViewBag.Title = "Страница с автомобилями";
-            CarsListViewModel obj = new CarsListViewModel();
-            obj.AllCars = _allCars.Cars;
-            obj.CurrCategory = "";
-            return View(obj);
+            CarsListViewModel carObj = new CarsListViewModel
+            {
+                AllCars = cars,
+                CurrCategory = curCategory
+            };
+
+            return View(carObj);
         }
     }
 }

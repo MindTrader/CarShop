@@ -43,7 +43,11 @@ namespace CarShop
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseSession();
-            app.UseMvcWithDefaultRoute();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(name: "categoryFilter", template: "Car/{action=List}/{category?}");
+            });
 
             using (var scope = app.ApplicationServices.CreateScope())
                 DbObjects.Initial(scope.ServiceProvider.GetRequiredService<AppDBContent>());

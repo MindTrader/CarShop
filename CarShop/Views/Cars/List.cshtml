@@ -1,7 +1,6 @@
 ﻿@model CarsListViewModel
 
-<h1>Все автомобили</h1>
-<h2>@Model.CurrCategory</h2>
+<h1>@Model.CurrCategory</h1>
 <div class="row mt-5 mb-2 ml-2">
     @{
         foreach (Car car in Model.AllCars)
