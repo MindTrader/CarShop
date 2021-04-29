@@ -6,6 +6,6 @@
         <h3>@Model.Name</h3>
         <p>@Model.ShortDesc</p>
         <p>Цена: @Model.Price.ToString("C", CultureInfo.GetCultureInfo("es-es"))</p>
-        <p><a class="btn btn-warning" href="#">Подробнее</a></p>
+        <p><a class="btn btn-warning" asp-controller="ShopCart" asp-action="AddToCart" asp-route-id="@Model.Id">Add To Cart</a></p>
     </div>
 }

@@ -35,9 +35,17 @@ namespace CarShop.Data.Models
             _appDBContent.SaveChanges();
         }
 
+        public void RemoveAllFromCart()
+        {
+            foreach (ShopCartItem car in _appDBContent.ShopCartItemDb)
+                _appDBContent.ShopCartItemDb.Remove(car);
+
+            _appDBContent.SaveChanges();
+        }
+
         public List<ShopCartItem> GetCartItems()
         {
-            return _appDBContent.ShopCartItemDb.Where(c => c.ShopCartId == this.ShopCartId).Include(s=>s.CarItem).ToList();
+            return _appDBContent.ShopCartItemDb.Where(c => c.ShopCartId == this.ShopCartId).Include(s => s.CarItem).ToList();
         }
     }
 }
